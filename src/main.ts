@@ -8,6 +8,12 @@ type Photo = {
 };
 
 const typeDefs = gql`
+  type Photo {
+    id: ID!
+    url: String!
+    name: String!
+    description: String
+  }
   type Query {
     totalPhotos: Int!
   }
