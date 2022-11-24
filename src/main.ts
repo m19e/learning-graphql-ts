@@ -19,7 +19,7 @@ const typeDefs = gql`
     allPhotos: [Photo!]!
   }
   type Mutation {
-    postPhoto(name: String!, description: String): Boolean!
+    postPhoto(name: String!, description: String): Photo!
   }
 `;
 
