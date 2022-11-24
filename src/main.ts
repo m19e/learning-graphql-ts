@@ -16,6 +16,7 @@ const typeDefs = gql`
   }
   type Query {
     totalPhotos: Int!
+    allPhotos: [Photo!]!
   }
   type Mutation {
     postPhoto(name: String!, description: String): Boolean!
