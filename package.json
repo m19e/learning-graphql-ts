@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon -e"
+    "start": "nodemon"
   },
   "dependencies": {
     "apollo-server": "^3.11.1",
