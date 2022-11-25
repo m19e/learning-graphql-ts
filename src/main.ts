@@ -23,11 +23,13 @@ const typeDefs = gql`
   }
 `;
 
+let _id = 0;
 let photos: Photo[] = [];
 
 const resolvers = {
   Query: {
     totalPhotos: () => photos.length,
+    allPhotos: () => photos,
   },
   Mutation: {
     postPhoto: (_: any, args: Photo) => {
