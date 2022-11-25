@@ -1,6 +1,9 @@
 import { ApolloServer, gql } from "apollo-server";
 import { v4 as uuidv4 } from "uuid";
 
+type PhotoInput = {
+  input: Photo;
+};
 type Photo = {
   id: string;
   url: string;
@@ -9,18 +12,31 @@ type Photo = {
 };
 
 const typeDefs = gql`
+  enum PhotoCategory {
+    SELFIE
+    PORTRAIT
+    ACTION
+    LANDSCAPE
+    GRAPHIC
+  }
   type Photo {
     id: ID!
     url: String!
     name: String!
     description: String
+    category: PhotoCategory!
+  }
+  input PostPhotoInput {
+    name: String!
+    category: PhotoCategory = PORTRAIT
+    desciption: String
   }
   type Query {
     totalPhotos: Int!
     allPhotos: [Photo!]!
   }
   type Mutation {
-    postPhoto(name: String!, description: String): Photo!
+    postPhoto(input: PostPhotoInput): Photo!
   }
 `;
 
@@ -32,14 +48,17 @@ const resolvers = {
     allPhotos: () => photos,
   },
   Mutation: {
-    postPhoto: (_: any, args: Photo): Photo => {
+    postPhoto: (_: any, args: PhotoInput): Photo => {
       const newPhoto: Photo = {
-        ...args,
+        ...args.input,
         id: uuidv4(),
       };
       photos.push(newPhoto);
       return newPhoto;
     },
+  },
+  Photo: {
+    url: (parent: Photo) => `https://mysite.com/assets/img/${parent.id}.png`,
   },
 };
 
