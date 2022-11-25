@@ -35,7 +35,7 @@ const typeDefs = gql`
   input PostPhotoInput {
     name: String!
     category: PhotoCategory = PORTRAIT
-    desciption: String
+    description: String
   }
   type Query {
     totalPhotos: Int!
