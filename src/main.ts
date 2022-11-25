@@ -1,4 +1,5 @@
 import { ApolloServer, gql } from "apollo-server";
+import { v4 as uuidv4 } from "uuid";
 
 type Photo = {
   id: string;
@@ -23,7 +24,6 @@ const typeDefs = gql`
   }
 `;
 
-let _id = 0;
 let photos: Photo[] = [];
 
 const resolvers = {
@@ -32,9 +32,13 @@ const resolvers = {
     allPhotos: () => photos,
   },
   Mutation: {
-    postPhoto: (_: any, args: Photo) => {
-      photos.push(args);
-      return true;
+    postPhoto: (_: any, args: Photo): Photo => {
+      const newPhoto: Photo = {
+        ...args,
+        id: uuidv4(),
+      };
+      photos.push(newPhoto);
+      return newPhoto;
     },
   },
 };
