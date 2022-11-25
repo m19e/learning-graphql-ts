@@ -19,6 +19,12 @@ const typeDefs = gql`
     LANDSCAPE
     GRAPHIC
   }
+  type User {
+    githubLogin: ID!
+    name: String
+    avatar: String
+    postedPhotos: [Photo!]!
+  }
   type Photo {
     id: ID!
     url: String!
