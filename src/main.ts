@@ -2,6 +2,7 @@ import { ApolloServer, gql } from "apollo-server";
 import { v4 as uuidv4 } from "uuid";
 
 import { Photo, PhotoInput, User } from "@/types";
+import { photos } from "@/mocks";
 
 const typeDefs = gql`
   enum PhotoCategory {
@@ -38,8 +39,6 @@ const typeDefs = gql`
     postPhoto(input: PostPhotoInput): Photo!
   }
 `;
-
-let photos: Photo[] = [];
 
 const resolvers = {
   Query: {
