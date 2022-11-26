@@ -2,7 +2,7 @@ import { ApolloServer, gql } from "apollo-server";
 import { v4 as uuidv4 } from "uuid";
 
 import { Photo, PhotoInput, User } from "@/types";
-import { photos } from "@/mocks";
+import { photos, users } from "@/mocks";
 
 const typeDefs = gql`
   enum PhotoCategory {
@@ -57,6 +57,7 @@ const resolvers = {
   },
   Photo: {
     url: (parent: Photo) => `https://mysite.com/assets/img/${parent.id}.png`,
+    postedBy: (parent: Photo) => users.find((u) => u.githubLogin === parent.githubUser),
   },
 };
 
