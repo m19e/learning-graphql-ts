@@ -3,6 +3,7 @@ export type Photo = {
   url: string;
   name: string;
   desciption?: string;
+  postedBy: User;
 };
 
 export type PhotoInput = {

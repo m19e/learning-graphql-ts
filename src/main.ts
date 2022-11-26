@@ -23,6 +23,7 @@ const typeDefs = gql`
     name: String!
     description: String
     category: PhotoCategory!
+    postedBy: User!
   }
   input PostPhotoInput {
     name: String!
