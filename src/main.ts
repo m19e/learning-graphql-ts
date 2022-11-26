@@ -1,15 +1,7 @@
 import { ApolloServer, gql } from "apollo-server";
 import { v4 as uuidv4 } from "uuid";
 
-type PhotoInput = {
-  input: Photo;
-};
-type Photo = {
-  id: string;
-  url: string;
-  name: string;
-  desciption?: string;
-};
+import { Photo, PhotoInput, User } from "@/types";
 
 const typeDefs = gql`
   enum PhotoCategory {
