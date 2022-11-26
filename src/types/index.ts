@@ -4,11 +4,11 @@ export type PhotoCategory = keyof typeof CATEGORY;
 
 export type Photo = {
   id: string;
-  url: string;
+  url?: string;
   name: string;
   desciption?: string;
   category: PhotoCategory;
-  postedBy: User;
+  githubUser: string;
 };
 
 export type PhotoInput = {
