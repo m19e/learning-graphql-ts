@@ -59,6 +59,9 @@ const resolvers = {
     url: (parent: Photo) => `https://mysite.com/assets/img/${parent.id}.png`,
     postedBy: (parent: Photo) => users.find((u) => u.githubLogin === parent.githubUser),
   },
+  User: {
+    postedPhotos: (parent: User) => photos.filter((p) => p.githubUser === parent.githubLogin),
+  },
 };
 
 const server = new ApolloServer({
