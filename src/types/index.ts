@@ -1,8 +1,13 @@
+import type { CATEGORY } from "@/consts";
+
+export type PhotoCategory = keyof typeof CATEGORY;
+
 export type Photo = {
   id: string;
   url: string;
   name: string;
   desciption?: string;
+  category: PhotoCategory;
   postedBy: User;
 };
 
